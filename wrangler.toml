@@ -1,0 +1,5 @@
+name = "nvx"
+compatibility_date = "2025-01-23"
+
+[site]
+bucket = "./"
