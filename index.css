@@ -6,6 +6,14 @@
     src: url('/public/fonts/GT-Super-Display-Bold.woff2') format('woff2');
 }
 
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/public/fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -43,9 +51,9 @@ header {
 }
 
 .logo {
-    font-family: 'GT Super Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.1em;
     color: #2C3E50;
 }
@@ -93,9 +101,9 @@ main.slide-up {
 }
 
 h1 {
-    font-family: 'GT Super Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: clamp(3rem, 10vw, 8rem);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1;
     color: #2C3E50;
     margin-bottom: 2rem;
