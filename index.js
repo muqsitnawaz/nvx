@@ -25,7 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (ctaButton) {
         ctaButton.addEventListener('click', function () {
             const founderSection = document.getElementById('founder');
-            
+
+            // Move the whole hero section up
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.classList.add('slide-up');
+            }
+
             // Fade in only the Founder's Letter section
             if (founderSection) {
                 founderSection.classList.add('open');
