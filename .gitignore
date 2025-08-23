@@ -1,2 +1,26 @@
 ## Recurisve ignores
 **/.DS_Store
+
+# Dependencies
+node_modules/
+
+# System files
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local
+
+# Build outputs
+dist/
+build/

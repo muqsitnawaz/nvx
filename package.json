@@ -1,0 +1,11 @@
+{
+  "name": "novier-aurex",
+  "version": "1.0.0",
+  "description": "Novier Aurex - Where technological excellence meets timeless elegance",
+  "scripts": {
+    "build": "echo 'No build required for static site'"
+  },
+  "author": "Muqsit",
+  "license": "UNLICENSED",
+  "private": true
+}
