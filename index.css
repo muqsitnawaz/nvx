@@ -194,40 +194,23 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* Hairline Sweep Reveal */
+/* Section Reveal */
 .reveal {
-    position: absolute;
-    top: 65vh;
-    left: 50%;
-    transform: translateX(-50%);
     max-width: 960px;
     width: calc(100% - 4rem);
+    margin: 3rem auto;
     padding: 0 2rem;
     opacity: 0;
     transition: opacity 1000ms ease;
-    pointer-events: none;
-    z-index: 10;
 }
 
 .reveal.open {
     opacity: 1;
-    pointer-events: auto;
-}
-
-.reveal.in-flow {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    margin-top: 2rem;
 }
 
 .reveal-hairline {
     height: 1px;
     background: linear-gradient(90deg, rgba(44, 62, 80, 0), rgba(44, 62, 80, 0.6), rgba(44, 62, 80, 0));
-    transform-origin: center;
-    transform: scaleX(0);
-    transition: transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal-content {
@@ -238,18 +221,9 @@ h1 {
         opacity 1000ms ease;
 }
 
-.reveal.drawn .reveal-hairline {
-    transform: scaleX(1);
-}
-
 .reveal.open .reveal-content {
     max-height: 800px;
     opacity: 1;
-    transform: translateY(0);
-}
-
-.hero.condensed {
-    transform: translateY(calc(-50vh + 120px));
 }
 
 .reveal h2 {
@@ -281,6 +255,7 @@ h1 {
     }
 }
 
+/* Hero Animation on page load */
 @keyframes fadeInSmooth {
     from {
         opacity: 0;

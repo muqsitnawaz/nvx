@@ -25,55 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (ctaButton) {
         ctaButton.addEventListener('click', function () {
             const founderSection = document.getElementById('founder');
-            const hero = document.querySelector('.hero');
             
-            // First fade in the founder's letter (stays absolute positioned)
+            // Fade in only the Founder's Letter section
             if (founderSection) {
                 founderSection.classList.add('open');
-                founderSection.classList.add('drawn');
-            }
-            
-            // Then change position to relative AND move hero up simultaneously
-            setTimeout(() => {
-                if (founderSection) {
-                    founderSection.classList.add('in-flow');
-                }
-                if (hero) {
-                    hero.classList.add('condensed');
-                }
-            }, 1000);
-            
-            console.log('Founder\'s Letter clicked');
-        });
-    }
-
-    const visionLink = document.querySelector('a[href="#vision"]');
-    if (visionLink) {
-        visionLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            const visionSection = document.getElementById('vision');
-            const hero = document.querySelector('.hero');
-            if (visionSection) {
-                visionSection.classList.add('open');
-                visionSection.classList.add('drawn');
-            }
-            if (hero) {
-                hero.classList.add('condensed');
-            }
-        });
-    }
-
-    const founderHeading = document.querySelector('#founder h2');
-    if (founderHeading) {
-        founderHeading.addEventListener('click', function () {
-            const founderSection = document.getElementById('founder');
-            const hero = document.querySelector('.hero');
-            if (founderSection) {
-                founderSection.classList.add('open');
-                founderSection.classList.add('drawn');
-            }
-            if (hero) {
-                hero.classList.add('condensed');
             }
         });
     }
