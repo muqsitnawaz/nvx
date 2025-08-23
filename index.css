@@ -205,6 +205,7 @@ h1 {
 }
 
 .cta-button {
+    position: relative;
     background: #f5e5d1;
     color: #2C3E50;
     border: none;
@@ -215,11 +216,97 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: inherit;
+    overflow: visible;
+    box-shadow: 
+        0 2px 4px rgba(0,0,0,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.5),
+        inset 0 -1px 0 rgba(0,0,0,0.05);
+    z-index: 0;
+}
+
+/* Paper texture effect */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(255,255,255,0.03) 2px,
+            rgba(255,255,255,0.03) 4px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0,0,0,0.02) 2px,
+            rgba(0,0,0,0.02) 4px
+        );
+    pointer-events: none;
+}
+
+.cta-button span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Envelope fold effect - top flap */
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, #f9f0e0 0%, #f5e5d1 100%);
+    transform-origin: top center;
+    transform: perspective(400px) rotateX(0deg);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    z-index: 1;
+    border-radius: 4px 4px 0 0;
 }
 
 .cta-button:hover {
     background: #E8D4B8;
     transform: translateY(-2px);
+    box-shadow: 
+        0 4px 8px rgba(0,0,0,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.5),
+        inset 0 -1px 0 rgba(0,0,0,0.05);
+}
+
+/* Letter opened state */
+.cta-button.letter-opened {
+    background: linear-gradient(180deg, #f0ddc4 0%, #f5e5d1 100%);
+    box-shadow: 
+        0 1px 2px rgba(0,0,0,0.05),
+        inset 0 -2px 4px rgba(0,0,0,0.06);
+}
+
+.cta-button.letter-opened::after {
+    transform: perspective(400px) rotateX(-160deg);
+    background: linear-gradient(to bottom, #faf5ed 0%, #f5e5d1 100%);
+    box-shadow: 0 -4px 8px rgba(0,0,0,0.15);
+}
+
+/* Subtle animation for opened state */
+.cta-button.letter-opened::before {
+    animation: paperShimmer 3s ease-in-out infinite;
+}
+
+@keyframes paperShimmer {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
 }
 
 /* Section Reveal */
