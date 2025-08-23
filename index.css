@@ -72,9 +72,10 @@ main {
     width: 100%;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 0 2rem 2rem;
 }
 
 .hero {
@@ -83,6 +84,7 @@ main {
     margin: 0 auto;
     opacity: 0;
     animation: fadeInSmooth 2s ease-out forwards;
+    transition: transform 600ms cubic-bezier(0.22, 1, 0.24, 1);
 }
 
 h1 {
@@ -194,16 +196,22 @@ h1 {
 /* Hairline Sweep Reveal */
 .reveal {
     max-width: 960px;
-    margin: 6rem auto 0;
+    margin: 2rem auto 0;
     padding: 0 2rem;
+    display: none;
+}
+
+.reveal.open {
+    margin-top: 6rem;
+    display: block;
 }
 
 .reveal-hairline {
     height: 1px;
-    background: linear-gradient(90deg, rgba(44,62,80,0), rgba(44,62,80,0.6), rgba(44,62,80,0));
+    background: linear-gradient(90deg, rgba(44, 62, 80, 0), rgba(44, 62, 80, 0.6), rgba(44, 62, 80, 0));
     transform-origin: center;
-    scale: 0 1;
-    transition: scale 500ms cubic-bezier(0.22, 1, 0.24, 1);
+    transform: scaleX(0);
+    transition: transform 500ms cubic-bezier(0.22, 1, 0.24, 1);
 }
 
 .reveal-content {
@@ -212,18 +220,22 @@ h1 {
     opacity: 0;
     transform: translateY(8px);
     transition: max-height 600ms cubic-bezier(0.22, 1, 0.24, 1),
-                opacity 500ms ease,
-                transform 600ms cubic-bezier(0.22, 1, 0.24, 1);
+        opacity 500ms ease,
+        transform 600ms cubic-bezier(0.22, 1, 0.24, 1);
 }
 
-.reveal.open .reveal-hairline {
-    scale: 1 1;
+.reveal.drawn .reveal-hairline {
+    transform: scaleX(1);
 }
 
 .reveal.open .reveal-content {
     max-height: 800px;
     opacity: 1;
     transform: translateY(0);
+}
+
+.hero.condensed {
+    transform: translateY(-12vh);
 }
 
 .reveal h2 {
@@ -242,9 +254,16 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .reveal-hairline,
     .reveal-content {
         transition: none;
+    }
+
+    .reveal-content {
+        max-height: none;
+        opacity: 1;
+        transform: none;
     }
 }
 
