@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Novier Aurex - Where technological excellence meets timeless elegance",
   "scripts": {
-    "build": "echo 'No build required for static site'"
+    "build": "rm -rf dist && mkdir -p dist && cp index.html index.css index.js dist/ && cp -R public dist/"
   },
   "author": "Muqsit",
   "license": "UNLICENSED",
