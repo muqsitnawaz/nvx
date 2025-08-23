@@ -163,13 +163,37 @@ h1 {
 .letter {
     display: inline-block;
     cursor: pointer;
-    color: inherit;
-    transition: color 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    background:
+        linear-gradient(180deg, #2C3E50, #2C3E50),
+        repeating-linear-gradient(12deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .letter:hover {
-    color: #000000;
-    transition: color 0.5s ease-in-out;
+    background:
+        linear-gradient(180deg, #000000, #000000),
+        repeating-linear-gradient(12deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Brushed-silver (anisotropic) effect - applied to container for inheritance */
+.wordmark.texture {
+    /* Container styling to ensure proper text rendering */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Fallback: remove texture on small screens */
+@media (max-width: 768px) {
+    .wordmark.texture {
+        color: #2C3E50;
+        -webkit-text-fill-color: #2C3E50;
+        background: none;
+    }
 }
 
 .tagline {
