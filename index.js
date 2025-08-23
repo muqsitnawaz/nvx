@@ -27,18 +27,21 @@ document.addEventListener('DOMContentLoaded', function () {
             const founderSection = document.getElementById('founder');
             const hero = document.querySelector('.hero');
             
-            // First fade in the founder's letter
+            // First fade in the founder's letter (stays absolute positioned)
             if (founderSection) {
                 founderSection.classList.add('open');
                 founderSection.classList.add('drawn');
             }
             
-            // Then move everything up after the fade completes
-            if (hero) {
-                setTimeout(() => {
+            // Then change position to relative AND move hero up simultaneously
+            setTimeout(() => {
+                if (founderSection) {
+                    founderSection.classList.add('in-flow');
+                }
+                if (hero) {
                     hero.classList.add('condensed');
-                }, 1000);
-            }
+                }
+            }, 1000);
             
             console.log('Founder\'s Letter clicked');
         });

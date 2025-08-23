@@ -197,9 +197,9 @@ h1 {
 /* Hairline Sweep Reveal */
 .reveal {
     position: absolute;
-    top: 50%;
+    top: 65vh;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     max-width: 960px;
     width: calc(100% - 4rem);
     padding: 0 2rem;
@@ -210,13 +210,16 @@ h1 {
 }
 
 .reveal.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.reveal.in-flow {
     position: relative;
     top: auto;
     left: auto;
     transform: none;
     margin-top: 2rem;
-    opacity: 1;
-    pointer-events: auto;
 }
 
 .reveal-hairline {
