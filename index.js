@@ -26,13 +26,23 @@ document.addEventListener('DOMContentLoaded', function () {
         ctaButton.addEventListener('click', function () {
             const founderSection = document.getElementById('founder');
             const hero = document.querySelector('.hero');
-            if (founderSection) {
-                founderSection.classList.add('open');
-                founderSection.classList.add('drawn');
-            }
+            
+            // Start hero movement first
             if (hero) {
                 hero.classList.add('condensed');
             }
+            
+            // Delay the reveal slightly for coordinated animation
+            if (founderSection) {
+                setTimeout(() => {
+                    founderSection.classList.add('open');
+                    // Delay the hairline animation slightly more
+                    setTimeout(() => {
+                        founderSection.classList.add('drawn');
+                    }, 300);
+                }, 150);
+            }
+            
             console.log('Founder\'s Letter clicked');
         });
     }
