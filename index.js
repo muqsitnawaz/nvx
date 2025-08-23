@@ -22,21 +22,47 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const ctaButton = document.querySelector('.cta-button');
+    let isLetterOpen = false;
+    
     if (ctaButton) {
         ctaButton.addEventListener('click', function () {
             const founderSection = document.getElementById('founder');
-
-            // Move the entire main container up
             const main = document.querySelector('main');
-            if (main) {
-                main.classList.add('slide-up');
-            }
+            
+            if (!isLetterOpen) {
+                // Open the letter
+                ctaButton.classList.add('letter-opened');
+                
+                // Move the entire main container up
+                if (main) {
+                    main.classList.add('slide-up');
+                }
 
-            // Fade in the Founder's Letter section after a delay
-            if (founderSection) {
+                // Fade in the Founder's Letter section after a delay
+                if (founderSection) {
+                    setTimeout(() => {
+                        founderSection.classList.add('open');
+                    }, 2500); // Start fade-in at 2.5 seconds, slightly before slide-up completes
+                }
+                
+                isLetterOpen = true;
+            } else {
+                // Close the letter
+                ctaButton.classList.remove('letter-opened');
+                
+                // First fade out the founder section
+                if (founderSection) {
+                    founderSection.classList.remove('open');
+                }
+                
+                // Then slide main back down after a brief delay
                 setTimeout(() => {
-                    founderSection.classList.add('open');
-                }, 2500); // Start fade-in at 2.5 seconds, slightly before slide-up completes
+                    if (main) {
+                        main.classList.remove('slide-up');
+                    }
+                }, 300); // Small delay for smooth transition
+                
+                isLetterOpen = false;
             }
         });
     }
