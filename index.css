@@ -89,20 +89,67 @@ h1 {
     font-family: 'GT Super Display', serif;
     font-size: clamp(3rem, 10vw, 8rem);
     font-weight: 700;
-    letter-spacing: 0.02em;
-    line-height: 0.9;
+    line-height: 1;
     color: #2C3E50;
     margin-bottom: 2rem;
 }
 
 .novier {
     display: block;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
+    margin-bottom: -0.1em;
 }
 
 .aurex {
     display: block;
-    letter-spacing: 0.03em;
+    letter-spacing: -0.05em;
+}
+
+/* Manual Kerning Adjustments */
+
+/* N-O */
+.novier .letter:nth-child(1) {
+    margin-right: -0.05em;
+}
+
+/* O-V */
+.novier .letter:nth-child(2) {
+    margin-right: -0.05em;
+}
+
+/* V-I */
+.novier .letter:nth-child(3) {
+    margin-right: 0em;
+}
+
+/* I-E */
+.novier .letter:nth-child(4) {
+    margin-right: 0.1em;
+}
+
+/* E-R */
+.novier .letter:nth-child(5) {
+    margin-right: 0.08em;
+}
+
+/* A-U */
+.aurex .letter:nth-child(1) {
+    margin-right: -0.02em;
+}
+
+/* U-R */
+.aurex .letter:nth-child(2) {
+    margin-right: 0.01em;
+}
+
+/* R-E */
+.aurex .letter:nth-child(3) {
+    margin-right: 0.08em;
+}
+
+/* E-X */
+.aurex .letter:nth-child(4) {
+    margin-right: 0.01em;
 }
 
 /* Letter Animation */
@@ -127,7 +174,7 @@ h1 {
 }
 
 .cta-button {
-    background: #F5E6D3;
+    background: #f5e5d1;
     color: #2C3E50;
     border: none;
     padding: 0.875rem 2rem;
@@ -149,6 +196,7 @@ h1 {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -160,29 +208,29 @@ h1 {
     header {
         padding: 1.5rem 2rem;
     }
-    
+
     .logo {
         font-size: 1.25rem;
     }
-    
+
     nav {
         gap: 2rem;
     }
-    
+
     nav a {
         font-size: 0.875rem;
     }
-    
+
     h1 {
         font-size: clamp(2.5rem, 12vw, 5rem);
         margin-bottom: 1.5rem;
     }
-    
+
     .tagline {
         font-size: 1rem;
         padding: 0 1rem;
     }
-    
+
     .tagline br {
         display: none;
     }
@@ -192,15 +240,15 @@ h1 {
     header {
         padding: 1.25rem 1.5rem;
     }
-    
+
     nav {
         gap: 1.5rem;
     }
-    
+
     nav a {
         font-size: 0.8rem;
     }
-    
+
     h1 {
         font-size: 3rem;
     }
