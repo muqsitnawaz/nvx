@@ -27,20 +27,17 @@ document.addEventListener('DOMContentLoaded', function () {
             const founderSection = document.getElementById('founder');
             const hero = document.querySelector('.hero');
             
-            // Start hero movement first
-            if (hero) {
-                hero.classList.add('condensed');
+            // First fade in the founder's letter
+            if (founderSection) {
+                founderSection.classList.add('open');
+                founderSection.classList.add('drawn');
             }
             
-            // Delay the reveal slightly for coordinated animation
-            if (founderSection) {
+            // Then move everything up after the fade completes
+            if (hero) {
                 setTimeout(() => {
-                    founderSection.classList.add('open');
-                    // Delay the hairline animation slightly more
-                    setTimeout(() => {
-                        founderSection.classList.add('drawn');
-                    }, 300);
-                }, 150);
+                    hero.classList.add('condensed');
+                }, 1000);
             }
             
             console.log('Founder\'s Letter clicked');

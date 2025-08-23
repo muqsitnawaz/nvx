@@ -85,7 +85,7 @@ main {
     margin: 0 auto;
     opacity: 0;
     animation: fadeInSmooth 2s ease-out forwards;
-    transition: transform 2500ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 2000ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 h1 {
@@ -199,13 +199,12 @@ h1 {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) translateY(40px);
+    transform: translate(-50%, -50%);
     max-width: 960px;
     width: calc(100% - 4rem);
     padding: 0 2rem;
     opacity: 0;
-    transition: opacity 1800ms ease,
-                transform 2200ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 1000ms ease;
     pointer-events: none;
     z-index: 10;
 }
@@ -225,17 +224,15 @@ h1 {
     background: linear-gradient(90deg, rgba(44, 62, 80, 0), rgba(44, 62, 80, 0.6), rgba(44, 62, 80, 0));
     transform-origin: center;
     transform: scaleX(0);
-    transition: transform 1400ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal-content {
     overflow: hidden;
     max-height: 0;
     opacity: 0;
-    transform: translateY(20px);
-    transition: max-height 2200ms cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 2000ms ease,
-        transform 2200ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: max-height 1000ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 1000ms ease;
 }
 
 .reveal.drawn .reveal-hairline {
