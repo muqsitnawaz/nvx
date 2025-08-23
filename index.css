@@ -205,12 +205,12 @@ h1 {
     margin: 3rem auto;
     padding: 0 2rem;
     opacity: 0;
-    display: none;
-    transition: opacity 1000ms ease;
+    visibility: hidden;
+    transition: opacity 1000ms ease, visibility 1000ms ease;
 }
 
 .reveal.open {
-    display: block;
+    visibility: visible;
     opacity: 1;
 }
 

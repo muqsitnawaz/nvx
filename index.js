@@ -32,9 +32,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 main.classList.add('slide-up');
             }
 
-            // Fade in only the Founder's Letter section
+            // Fade in the Founder's Letter section after a delay
             if (founderSection) {
-                founderSection.classList.add('open');
+                setTimeout(() => {
+                    founderSection.classList.add('open');
+                }, 2500); // Start fade-in at 2.5 seconds, slightly before slide-up completes
             }
         });
     }
