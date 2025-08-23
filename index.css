@@ -75,7 +75,8 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 2rem 2rem;
+    padding: 0 2rem;
+    position: relative;
 }
 
 .hero {
@@ -195,23 +196,27 @@ h1 {
 
 /* Hairline Sweep Reveal */
 .reveal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(40px);
     max-width: 960px;
-    margin: 2rem auto 0;
+    width: calc(100% - 4rem);
     padding: 0 2rem;
-    visibility: hidden;
     opacity: 0;
-    transform: translateY(40px);
     transition: opacity 1800ms ease,
-                transform 2200ms cubic-bezier(0.4, 0, 0.2, 1),
-                visibility 0s linear 0s;
+                transform 2200ms cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
+    z-index: 10;
 }
 
 .reveal.open {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
     margin-top: 2rem;
-    visibility: visible;
     opacity: 1;
-    transform: translateY(0);
     pointer-events: auto;
 }
 
@@ -244,7 +249,7 @@ h1 {
 }
 
 .hero.condensed {
-    transform: translateY(-40vh);
+    transform: translateY(calc(-50vh + 120px));
 }
 
 .reveal h2 {
