@@ -105,20 +105,16 @@ document.addEventListener('DOMContentLoaded', function () {
         root.style.setProperty('--halo-x', (clientWidth / 2) + 'px');
         root.style.setProperty('--halo-y', (clientHeight / 2) + 'px');
 
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            hero.addEventListener('mouseenter', () => {
-                root.style.setProperty('--halo-opacity', '0');
-            });
-            hero.addEventListener('mouseleave', () => {
-                root.style.setProperty('--halo-opacity', '1');
-            });
-            hero.addEventListener('touchstart', () => {
-                root.style.setProperty('--halo-opacity', '0');
-            }, { passive: true });
-            hero.addEventListener('touchend', () => {
-                root.style.setProperty('--halo-opacity', '1');
-            });
-        }
+        const toggleHalo = (on) => root.style.setProperty('--halo-opacity', on ? '0.1' : '0');
+        const bindHaloToggle = (el) => {
+            if (!el) return;
+            el.addEventListener('mouseenter', () => toggleHalo(false));
+            el.addEventListener('mouseleave', () => toggleHalo(true));
+            el.addEventListener('touchstart', () => toggleHalo(false), { passive: true });
+            el.addEventListener('touchend', () => toggleHalo(true));
+        };
+
+        bindHaloToggle(document.querySelector('.hero'));
+        bindHaloToggle(document.querySelector('#founder'));
     }
 });
