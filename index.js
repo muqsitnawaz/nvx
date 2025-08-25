@@ -117,4 +117,63 @@ document.addEventListener('DOMContentLoaded', function () {
         bindHaloToggle(document.querySelector('.hero'));
         bindHaloToggle(document.querySelector('#founder'));
     }
+    
+    // Vision Section Interactions
+    const visionContainer = document.querySelector('.vision-container');
+    const visionTimeline = document.querySelector('.vision-timeline');
+    const progressBar = document.querySelector('.vision-progress-bar');
+    
+    if (visionTimeline) {
+        const panels = document.querySelectorAll('.vision-panel');
+        
+        // Update progress bar on scroll
+        visionTimeline.addEventListener('scroll', () => {
+            const scrollHeight = visionTimeline.scrollHeight - visionTimeline.clientHeight;
+            const scrollPosition = visionTimeline.scrollTop;
+            const progress = (scrollPosition / scrollHeight) * 100;
+            
+            if (progressBar) {
+                progressBar.style.width = `${progress}%`;
+            }
+        });
+        
+        // Intersection Observer for panel animations
+        const observerOptions = {
+            root: visionTimeline,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+        
+        const panelObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Special handling for the future panel
+                    if (entry.target.classList.contains('vision-future')) {
+                        // Add subtle pulse animation to NVX text
+                        const nvxText = entry.target.querySelector('.vision-nvx');
+                        if (nvxText) {
+                            nvxText.style.animation = 'pulse 3s ease-in-out infinite';
+                        }
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        panels.forEach(panel => {
+            panelObserver.observe(panel);
+        });
+        
+        // Smooth scroll to vision section when clicking Vision nav link
+        const visionLink = document.querySelector('nav a[href="#vision"]');
+        if (visionLink) {
+            visionLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                visionContainer.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        }
+    }
 });
