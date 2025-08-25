@@ -42,6 +42,24 @@ body {
     color: #2C3E50;
     overflow-x: hidden;
     position: relative;
+    --motif-size: 128px;
+    --halo-x: 50%;
+    --halo-y: 50%;
+    --halo-r: 220px;
+    --gold: #D4AF37;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url('public/images/motif.svg');
+    background-size: var(--motif-size) var(--motif-size);
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.06;
+    z-index: 0;
 }
 
 body::after {
@@ -49,12 +67,21 @@ body::after {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    opacity: 0.3;
-    background:
-        repeating-linear-gradient(45deg, rgba(192,192,192,0.2) 0 1px, transparent 1px 46px),
-        repeating-linear-gradient(-45deg, rgba(192,192,192,0.2) 0 1px, transparent 1px 46px);
-    mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%);
+    background: radial-gradient(circle at var(--halo-x) var(--halo-y), rgba(212, 175, 55, 0.9) 0, rgba(212, 175, 55, 0.0) var(--halo-r));
+    mask-image: url('public/images/motif.svg');
+    mask-mode: alpha;
+    mask-mode: alpha;
+    mask-mode: alpha;
+    mask-size: var(--motif-size) var(--motif-size);
+    mask-repeat: repeat;
+    mask-position: center;
+    -webkit-mask-image: url('public/images/motif.svg');
+    -webkit-mask-size: var(--motif-size) var(--motif-size);
+    -webkit-mask-repeat: repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: var(--motif-size) var(--motif-size);
+    -webkit-mask-repeat: repeat;
+    -webkit-mask-position: center;
     z-index: 1;
 }
 
@@ -201,7 +228,7 @@ h1 {
     transition: all 0.5s ease-in-out;
     background:
         linear-gradient(180deg, #2C3E50, #2C3E50),
-        repeating-linear-gradient(12deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px);
+        repeating-linear-gradient(12deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 3px);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -210,7 +237,7 @@ h1 {
 .letter:hover {
     background:
         linear-gradient(180deg, #000000, #000000),
-        repeating-linear-gradient(12deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px);
+        repeating-linear-gradient(12deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 3px);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -253,9 +280,9 @@ h1 {
     font-family: inherit;
     overflow: visible;
     box-shadow:
-        0 2px 4px rgba(0,0,0,0.08),
-        inset 0 1px 0 rgba(255,255,255,0.5),
-        inset 0 -1px 0 rgba(0,0,0,0.05);
+        0 2px 4px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
     z-index: 0;
 }
 
@@ -268,20 +295,16 @@ h1 {
     right: 0;
     bottom: 0;
     background:
-        repeating-linear-gradient(
-            90deg,
+        repeating-linear-gradient(90deg,
             transparent,
             transparent 2px,
-            rgba(255,255,255,0.03) 2px,
-            rgba(255,255,255,0.03) 4px
-        ),
-        repeating-linear-gradient(
-            0deg,
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px),
+        repeating-linear-gradient(0deg,
             transparent,
             transparent 2px,
-            rgba(0,0,0,0.02) 2px,
-            rgba(0,0,0,0.02) 4px
-        );
+            rgba(0, 0, 0, 0.02) 2px,
+            rgba(0, 0, 0, 0.02) 4px);
     pointer-events: none;
 }
 
@@ -302,7 +325,7 @@ h1 {
     transform-origin: top center;
     transform: perspective(400px) rotateX(0deg);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
     z-index: 1;
     border-radius: 4px 4px 0 0;
 }
@@ -311,23 +334,23 @@ h1 {
     background: #E8D4B8;
     transform: translateY(-2px);
     box-shadow:
-        0 4px 8px rgba(0,0,0,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.5),
-        inset 0 -1px 0 rgba(0,0,0,0.05);
+        0 4px 8px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
 }
 
 /* Letter opened state */
 .cta-button.letter-opened {
     background: linear-gradient(180deg, #f0ddc4 0%, #f5e5d1 100%);
     box-shadow:
-        0 1px 2px rgba(0,0,0,0.05),
-        inset 0 -2px 4px rgba(0,0,0,0.06);
+        0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .cta-button.letter-opened::after {
     transform: perspective(400px) rotateX(-160deg);
     background: linear-gradient(to bottom, #faf5ed 0%, #f5e5d1 100%);
-    box-shadow: 0 -4px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Subtle animation for opened state */
@@ -336,9 +359,12 @@ h1 {
 }
 
 @keyframes paperShimmer {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.7;
     }
@@ -405,6 +431,10 @@ h1 {
         opacity: 1;
         transform: none;
     }
+
+    body::after {
+        background: none;
+    }
 }
 
 /* Hero Animation on page load */
@@ -451,6 +481,10 @@ h1 {
     .tagline br {
         display: none;
     }
+
+    body {
+        --halo-r: 180px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -468,6 +502,10 @@ h1 {
 
     h1 {
         font-size: 3rem;
+    }
+
+    body {
+        --halo-r: 160px;
     }
 }
 
