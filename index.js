@@ -118,62 +118,179 @@ document.addEventListener('DOMContentLoaded', function () {
         bindHaloToggle(document.querySelector('#founder'));
     }
     
-    // Vision Section Interactions
+    // Vision Section Full-Screen Experience
     const visionContainer = document.querySelector('.vision-container');
     const visionTimeline = document.querySelector('.vision-timeline');
     const progressBar = document.querySelector('.vision-progress-bar');
+    const visionLink = document.querySelector('nav a[href="#vision"]');
+    const closeButton = document.querySelector('.vision-close');
+    const playPauseButton = document.querySelector('.vision-play-pause');
+    const playIcon = document.querySelector('.vision-play-icon');
+    const pauseIcon = document.querySelector('.vision-pause-icon');
     
-    if (visionTimeline) {
+    if (visionContainer && visionTimeline) {
         const panels = document.querySelectorAll('.vision-panel');
+        let currentPanel = 0;
+        let autoPlayInterval = null;
+        let isPlaying = false;
+        const PANEL_DURATION = 6000; // 6 seconds per panel
+        const FINAL_PANEL_DURATION = 10000; // 10 seconds for final NVX panel
         
-        // Update progress bar on scroll
-        visionTimeline.addEventListener('scroll', () => {
-            const scrollHeight = visionTimeline.scrollHeight - visionTimeline.clientHeight;
-            const scrollPosition = visionTimeline.scrollTop;
-            const progress = (scrollPosition / scrollHeight) * 100;
+        // Show specific panel
+        function showPanel(index) {
+            panels.forEach((panel, i) => {
+                panel.classList.toggle('active', i === index);
+            });
             
+            // Update progress bar
+            const progress = ((index + 1) / panels.length) * 100;
             if (progressBar) {
                 progressBar.style.width = `${progress}%`;
             }
-        });
-        
-        // Intersection Observer for panel animations
-        const observerOptions = {
-            root: visionTimeline,
-            rootMargin: '0px',
-            threshold: 0.5
-        };
-        
-        const panelObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    
-                    // Special handling for the future panel
-                    if (entry.target.classList.contains('vision-future')) {
-                        // Add subtle pulse animation to NVX text
-                        const nvxText = entry.target.querySelector('.vision-nvx');
-                        if (nvxText) {
-                            nvxText.style.animation = 'pulse 3s ease-in-out infinite';
-                        }
-                    }
+            
+            // Special handling for future panel
+            if (index === panels.length - 1) {
+                const nvxText = panels[index].querySelector('.vision-nvx');
+                if (nvxText) {
+                    nvxText.style.animation = 'pulse 3s ease-in-out infinite';
                 }
-            });
-        }, observerOptions);
+            }
+        }
         
-        panels.forEach(panel => {
-            panelObserver.observe(panel);
-        });
+        // Auto-advance to next panel
+        function nextPanel() {
+            currentPanel = (currentPanel + 1) % panels.length;
+            showPanel(currentPanel);
+            
+            // Close after last panel
+            if (currentPanel === 0 && isPlaying) {
+                stopAutoPlay();
+                closeVision();
+            }
+        }
         
-        // Smooth scroll to vision section when clicking Vision nav link
-        const visionLink = document.querySelector('nav a[href="#vision"]');
+        // Start auto-play
+        function startAutoPlay() {
+            if (isPlaying) return;
+            isPlaying = true;
+            
+            if (playIcon && pauseIcon) {
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'inline';
+            }
+            
+            autoPlayInterval = setInterval(() => {
+                nextPanel();
+            }, currentPanel === panels.length - 1 ? FINAL_PANEL_DURATION : PANEL_DURATION);
+        }
+        
+        // Stop auto-play
+        function stopAutoPlay() {
+            isPlaying = false;
+            
+            if (playIcon && pauseIcon) {
+                playIcon.style.display = 'inline';
+                pauseIcon.style.display = 'none';
+            }
+            
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+            }
+        }
+        
+        // Open Vision experience
+        function openVision() {
+            visionContainer.classList.add('vision-active');
+            document.body.style.overflow = 'hidden';
+            
+            // Fade in after display is set
+            setTimeout(() => {
+                visionContainer.classList.add('vision-visible');
+                currentPanel = 0;
+                showPanel(0);
+                startAutoPlay();
+            }, 50);
+        }
+        
+        // Close Vision experience
+        function closeVision() {
+            stopAutoPlay();
+            visionContainer.classList.remove('vision-visible');
+            
+            setTimeout(() => {
+                visionContainer.classList.remove('vision-active');
+                document.body.style.overflow = '';
+                currentPanel = 0;
+            }, 800);
+        }
+        
+        // Event Listeners
         if (visionLink) {
             visionLink.addEventListener('click', function(e) {
                 e.preventDefault();
-                visionContainer.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                openVision();
             });
         }
+        
+        if (closeButton) {
+            closeButton.addEventListener('click', closeVision);
+        }
+        
+        if (playPauseButton) {
+            playPauseButton.addEventListener('click', function() {
+                if (isPlaying) {
+                    stopAutoPlay();
+                } else {
+                    startAutoPlay();
+                }
+            });
+        }
+        
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            if (!visionContainer.classList.contains('vision-active')) return;
+            
+            switch(e.key) {
+                case 'Escape':
+                    closeVision();
+                    break;
+                case 'ArrowRight':
+                    stopAutoPlay();
+                    nextPanel();
+                    break;
+                case 'ArrowLeft':
+                    stopAutoPlay();
+                    currentPanel = (currentPanel - 1 + panels.length) % panels.length;
+                    showPanel(currentPanel);
+                    break;
+                case ' ':
+                    e.preventDefault();
+                    if (isPlaying) {
+                        stopAutoPlay();
+                    } else {
+                        startAutoPlay();
+                    }
+                    break;
+            }
+        });
+        
+        // Pause on hover
+        visionTimeline.addEventListener('mouseenter', () => {
+            if (isPlaying) {
+                stopAutoPlay();
+            }
+        });
+        
+        // Resume after mouse leaves (with delay)
+        let resumeTimeout;
+        visionTimeline.addEventListener('mouseleave', () => {
+            clearTimeout(resumeTimeout);
+            resumeTimeout = setTimeout(() => {
+                if (!isPlaying && visionContainer.classList.contains('vision-active')) {
+                    startAutoPlay();
+                }
+            }, 3000);
+        });
     }
 });
