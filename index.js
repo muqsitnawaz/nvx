@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
         root.style.setProperty('--halo-x', (clientWidth / 2) + 'px');
         root.style.setProperty('--halo-y', (clientHeight / 2) + 'px');
 
-        const toggleHalo = (on) => root.style.setProperty('--halo-opacity', on ? '0.1' : '0');
+        const toggleHalo = (on) => root.style.setProperty('--halo-opacity', on ? '0.06' : '0');
         const bindHaloToggle = (el) => {
             if (!el) return;
             el.addEventListener('mouseenter', () => toggleHalo(false));

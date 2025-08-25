@@ -47,7 +47,8 @@ body {
     --halo-y: 50%;
     --halo-r: 220px;
     --gold: #D4AF37;
-    --halo-opacity: 0.1;
+    --motif-opacity: 0.01;
+    --halo-opacity: 0.06;
 }
 
 body::before {
@@ -59,7 +60,7 @@ body::before {
     background-size: var(--motif-size) var(--motif-size);
     background-repeat: repeat;
     background-position: center;
-    opacity: 0.01;
+    opacity: var(--motif-opacity);
     z-index: 0;
 }
 
@@ -68,7 +69,12 @@ body::after {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background: radial-gradient(circle at var(--halo-x) var(--halo-y), rgba(212, 175, 55, 0.9) 0, rgba(212, 175, 55, 0.0) var(--halo-r));
+    background:
+        radial-gradient(circle at var(--halo-x) var(--halo-y), rgba(212, 175, 55, 0.65) 0, rgba(212, 175, 55, 0) var(--halo-r)),
+        radial-gradient(circle at calc(var(--halo-x) + 60px) calc(var(--halo-y) - 30px), rgba(212, 175, 55, 0.25) 0, rgba(212, 175, 55, 0) calc(var(--halo-r) * 0.75)),
+        radial-gradient(circle at calc(var(--halo-x) - 55px) calc(var(--halo-y) + 45px), rgba(212, 175, 55, 0.22) 0, rgba(212, 175, 55, 0) calc(var(--halo-r) * 0.70)),
+        radial-gradient(circle at calc(var(--halo-x) + 35px) calc(var(--halo-y) + 70px), rgba(212, 175, 55, 0.18) 0, rgba(212, 175, 55, 0) calc(var(--halo-r) * 0.60)),
+        radial-gradient(circle at calc(var(--halo-x) - 80px) calc(var(--halo-y) - 65px), rgba(212, 175, 55, 0.16) 0, rgba(212, 175, 55, 0) calc(var(--halo-r) * 0.55));
     mask-image: url('public/images/motif.svg');
     mask-mode: alpha;
     mask-mode: alpha;
