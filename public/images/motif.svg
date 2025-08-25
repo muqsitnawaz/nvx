@@ -3,8 +3,8 @@
   <!-- Diagonals: 8px, Verticals: 4px (half) -->
   <g fill="none" stroke="currentColor" stroke-linecap="butt">
     <!-- diagonals -->
-    <path d="M0 0 L128 128 M0 128 L128 0" stroke-width="8"/>
+    <path d="M0 0 L128 128 M0 128 L128 0" stroke-width="4"/>
     <!-- vertical edges (on the boundaries) -->
-    <path d="M0 0 V128 M128 0 V128" stroke-width="8"/>
+    <path d="M0 0 V128 M128 0 V128" stroke-width="4"/>
   </g>
 </svg>

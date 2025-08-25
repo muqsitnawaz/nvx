@@ -42,11 +42,12 @@ body {
     color: #2C3E50;
     overflow-x: hidden;
     position: relative;
-    --motif-size: 128px;
+    --motif-size: 48px;
     --halo-x: 50%;
     --halo-y: 50%;
     --halo-r: 220px;
     --gold: #D4AF37;
+    --halo-opacity: 1;
 }
 
 body::before {
@@ -83,6 +84,7 @@ body::after {
     -webkit-mask-repeat: repeat;
     -webkit-mask-position: center;
     z-index: 1;
+    opacity: var(--halo-opacity);
 }
 
 /* Header */
@@ -152,6 +154,19 @@ main.slide-up {
     margin: 0 auto;
     opacity: 0;
     animation: fadeInSmooth 2s ease-out forwards;
+    z-index: 2;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: -6rem;
+    left: -6rem;
+    right: -6rem;
+    bottom: -6rem;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.4) 70%, rgba(255, 255, 255, 0) 100%);
+    z-index: -1;
 }
 
 h1 {
